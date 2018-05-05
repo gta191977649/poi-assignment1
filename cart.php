@@ -19,13 +19,14 @@ function addCart()
         $unitQuantity = $_GET["unit_quantity"];
 
         //Add to the cart
-        $newItem = [
+        $newItem = array(
             "item_id" => $itemID,
             "item_name" => $itemName,
             "uni_price" => $uniPrice,
             "item_qty" => $orderQty,
-            "unit_quantity" => $unitQuantity,
-        ];
+            "unit_quantity" => $unitQuantity
+        );
+        
         if (isset($_SESSION["cart_items"])) {
             $cartItems = $_SESSION["cart_items"];
         }
@@ -44,7 +45,6 @@ if (isset($_GET["method"])) {
 
     switch ($_GET["method"]) {
         case "add":{
-                
                 addCart();
                 break;
             }

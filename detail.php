@@ -75,10 +75,19 @@ if ($data == null) {
                 type:'get',
                 data:$('#item-form').serialize(),
                 success:function(){
-                    alert("add item seccuss");
+                    //alert("add item seccuss");
+                    parent.frames['bottom_right'].location.href = "cart.php";
+                    
                 }
             });
         });
     </script>
+    <!-- 
+        Ref:
+            ThoughtCo. (2016). Learn to Target a Window or Frame Using JavaScript or HTML. [online] Available at: https://www.thoughtco.com/target-a-window-or-frame-using-javascript-or-html-4092194 [Accessed 5 May 2018].
+
+    -->
 </body>
 </html>
+
+
