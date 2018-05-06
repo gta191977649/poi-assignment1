@@ -30,9 +30,22 @@ function addCart()
         if (isset($_SESSION["cart_items"])) {
             $cartItems = $_SESSION["cart_items"];
         }
+    
         array_push($cartItems, $newItem);
         $_SESSION["cart_items"] = $cartItems;
-
+        if (count($cartItems) == 0) clearCart();
+    }
+}
+function delCart(){
+    if (isset($_GET["id"]) ) {
+        $id = $_GET["id"];
+        //echo "id".$id;
+        $cartItems = array();
+        if (isset($_SESSION["cart_items"])) {
+            $cartItems = $_SESSION["cart_items"];
+        }
+        unset($cartItems[$id]);
+        $_SESSION["cart_items"] = $cartItems;
     }
 }
 function clearCart()
@@ -41,7 +54,13 @@ function clearCart()
     header("refresh:3;url=cart.php");
     die ("Your cart is clear");
 }
-
+function displayTotal() {
+    $total = 0;
+    foreach ($_SESSION["cart_items"] as $item) {
+        $total += $item["uni_price"] * $item["item_qty"];
+    }
+    echo "<h3>Total: $".$total."</h3>";
+}
 if (isset($_GET["method"])) {
 
     switch ($_GET["method"]) {
@@ -53,6 +72,11 @@ if (isset($_GET["method"])) {
                 clearCart();
                 break;
             }
+        case "del":{
+            echo "del";
+            delCart();
+            break;
+        }
 
     }
 }
@@ -77,16 +101,18 @@ if (isset($_GET["method"])) {
     <?php
         if (isset($_SESSION["cart_items"])) {
             echo '<table class="table">';
-            echo '<tr><th>ID</th><th>name</th><th>unit price</th><th>quantity</th><th>Qty</th></tr>';
-            foreach ($_SESSION["cart_items"] as $item) {
+            echo '<tr><th>ID</th><th>name</th><th>unit price</th><th>quantity</th><th>Qty</th><th>Opration</th></tr>';
+            foreach ($_SESSION["cart_items"] as $key=>$item) {
                 echo '<tr>';
-                echo "<td>" . $item["item_id"] . "</td>" . "<td>" . $item["item_name"] . "</td>" . "<td>" . $item["uni_price"] . "</td>" . "<td>" . $item["unit_quantity"] . "</td>" . "<td>" . $item["item_qty"] . "</td>";
+                echo "<td>" . $item["item_id"] . "</td>" . "<td>" . $item["item_name"] . "</td>" . "<td>" . $item["uni_price"] . "</td>" . "<td>" . $item["unit_quantity"] . "</td>" . "<td>" . $item["item_qty"] . "</td>"."<td><a href='cart.php?method=del&id=$key' class='btn btn-danger'>Delete</a></td>";
                 echo '</tr>';
             }
             echo '</table>';
+            displayTotal();
             ?>
                 <a href="cart.php?method=clear" class="btn btn-primary pull-right">Clear Cart</a>
             <?php
+            
         } else {
             die("<h1>Please add an item into the cart.</h1>");
         }
