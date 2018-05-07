@@ -1,32 +1,29 @@
 <html>
 
-<head>
-    <title>Grocery Store</title>
-   
-</head>
-<frameset cols="50%, 50%" frameborder="0">
 
-    <frame src="nav.html" frameborder="0">
-        <noframe>
-            <p>This frameset document contains:
-                <ui>
-                    <li>
-                        <a href="contents_of_frame1.html">Some neat contents</a>
-                        <li>
-                            <img src="contents_of_frame2.gif" alt="A neat image">
-                            <li>
-                                <a href="contents_of_frame3.html">Some other neat contents</a>
-                </ui>
-        </noframe>
-        <frameset rows="50%,50%" frameborder="0">
-            <frame src="detail.php" name="top_right" frameborder="0">
-            <frame src="cart.php" name="bottom_right" frameborder="0">
-        </frameset>
-</frameset>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grocery Store</title>
+
+    <frameset cols="50%, 50%" frameborder="0">
+            <frame src="nav.html" frameborder="0">
+            <frameset rows="50%,50%" frameborder="0">
+                <frame src="detail.php" name="top_right" frameborder="0">
+                <frame src="cart.php" name="bottom_right" frameborder="0">
+            </frameset>
+    </frameset>
+</head>
+<body>
+</body>
+</html>
+
 <!-- 
     Ref:
         Mark Otto, a. (2015). Components · Bootstrap. [online] Getbootstrap.com. Available at: http://getbootstrap.com/docs/3.3/components/ [Accessed 5 May 2018].
 
         W3schools.com. (2018). HTML frameset tag. [online] Available at: https://www.w3schools.com/tags/tag_frameset.asp [Accessed 4 May 2018].
 -->
-</html>
