@@ -88,13 +88,17 @@ if (isset($_GET["method"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cart</title>
-    	<!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	 crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://gta191977649.github.io/bootstrap-va11/scss/main.css">
+    <style>
+		body{
+			background: black;
+		}
+	</style>
 </head>
 <body>
     <div class="container-fluid">
@@ -110,7 +114,10 @@ if (isset($_GET["method"])) {
             echo '</table>';
             displayTotal();
             ?>
-                <a href="cart.php?method=clear" class="btn btn-primary pull-right">Clear Cart</a>
+            
+            <a href="contact.php" class="btn btn-success pull-right">Checkout</a>
+            <a href="cart.php?method=clear" class="btn btn-warning pull-right">Clear Cart</a>
+            
             <?php
             
         } else {

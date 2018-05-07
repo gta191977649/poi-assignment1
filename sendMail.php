@@ -1,0 +1,47 @@
+<?php
+
+    //客户表单POST参数
+    $firstName = null;
+    $lastName = null;
+    $address = null;
+    $suburb = null;
+    $state = null;
+    $country = null;
+    $email = null;
+    $orderDetails = "";
+    //如果表单POST请求参数正确
+    if(isset($_POST['first']) && isset($_POST['last']) && isset($_POST['addr'])&& isset($_POST['suburb'])&& isset($_POST['state'])&& isset($_POST['country'])&& isset($_POST['email'])) {
+        $firstName = $_POST['first'];
+        $lastName = $_POST['last'];
+        $address = $_POST['addr'];
+        $suburb = $_POST['suburb'];
+        $state = $_POST['state'];
+        $country = $_POST['country'];
+        $email = $_POST['email'];
+    } else {
+        header("refresh:2;contact.php");
+        die("<h1>Form input error, please check it again!</h1>");
+    }
+    //生成购物车内容
+    session_start();
+    if (isset($_SESSION["cart_items"])) {
+        $cartItems = $_SESSION["cart_items"];
+        foreach($cartItems as $item) {
+            $orderDetails .= $item["item_id"]."\t".$item["item_qty"]."\t".$item["item_name"]."\t".$item["uni_price"]."\t".$item["unit_quantity"]."\n";
+        }
+        $total = 0;
+        foreach ($cartItems as $item) {
+            $total += $item["uni_price"] * $item["item_qty"];
+        }
+        $orderDetails .= "Total: $".$total;
+    }
+    
+    //发送邮件
+    $msg = "Hello $firstName $lastName\nYour purchese is seccuessful,thank you for visiting Grocery Store,we hope you have a pleased shopping!\n[Order Details]:\n$orderDetails\n[Contact Detail]:\nName: $firstName $lastName\nAddress:\n$address\nSuburb:\n$suburb\nState:\n$state\nCountry:\n$country\nEmail:\n$email\n";
+    $msg = wordwrap($msg,70);
+    mail($email,"Thanks for your purches from Grocery Store",$msg);
+    //提示用户发送成功!
+
+    header("refresh:2;cart.php?method=clear");
+    die("<h1>An email is send to $email, thanks for your purches!</h1>");
+?>
