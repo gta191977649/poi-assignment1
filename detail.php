@@ -26,14 +26,14 @@ if (isset($_GET["id"])) {
     $data = displayItemDetail($id);
 } else {
     //die("<h1>Please choose an item.</h1>");
-    die('<div class="container  vertical-center"><div class="alert alert-info va-11-box-shadow" role="alert"><strong>System</strong> Please choose an item.</div></div>');
+    die('<div class="container vertical-center "><div class="alert alert-info va-11-box-shadow" role="alert"><strong>System</strong> Please choose an item.</div></div>');
 }
 if ($data == null) {
-    die('<div class="container  vertical-center"><div class="alert alert-danger va-11-box-shadow" role="alert"><strong>System</strong> Invaild Data ID.</div></div>');
+    die('<div class="container vertical-center"><div class="alert alert-danger va-11-box-shadow" role="alert"><strong>System</strong> Invaild Data ID.</div></div>');
 }
 
 ?>
-    <div class="container va11-theme-border va-11-box-shadow vertical-center" style="background-color:black;">
+    <div class="container va11-theme-border va-11-box-shadow " style="margin-top:80px; margin-bottom:80px;">
         <h1><?php echo $data["product_name"]; ?> <small>ID:<?php echo $data["product_id"]; ?></small></h1>
         <hr/>
         <table class="table table-hover table-bordered">
