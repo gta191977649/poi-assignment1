@@ -1,17 +1,3 @@
-<?php 
-    session_start();
-    if (isset($_SESSION["cart_items"])) {
-        $cartItems = $_SESSION["cart_items"];
-    } else {
-        header("refresh:2;cart.php");
-        die("<h2>You do not have item on cart</h2>");
-    }
-    //检测购物车里有没有东西
-    if(count($cartItems) == 0) {
-        header("refresh:2;cart.php");
-        die("<h2>You do not have item on cart</h2>");
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,15 +10,26 @@
 
 	<!-- Optional theme -->
     <link rel="stylesheet" href="https://gta191977649.github.io/bootstrap-va11/scss/main.css">
-    <style>
-		body{
-			background: black;
-		}
-	</style>
+    <link rel="stylesheet" href="helper.css">
     <title>Contact Form</title>
 </head>
 <body>
-    <div class="container-fluid">
+    <?php 
+        session_start();
+        if (isset($_SESSION["cart_items"])) {
+            $cartItems = $_SESSION["cart_items"];
+        } else {
+            header("refresh:2;cart.php");
+            //die("<h2>You do not have item on cart</h2>");
+            die('<div class="container vertical-center"><div class="alert alert-warning va-11-box-shadow" role="alert"><strong>System</strong> You do not have item on cart.</div></div>');
+        }
+        //检测购物车里有没有东西
+        if(count($cartItems) == 0) {
+            header("refresh:2;cart.php");
+            die('<div class="container vertical-center"><div class="alert alert-warning va-11-box-shadow" role="alert"><strong>System</strong> You do not have item on cart.</div></div>');
+        }
+    ?>
+    <div class="container va11-theme-border va-11-box-shadow "style="margin-top:80px; margin-bottom:80px;">
         <h1>Purchase form</h1>
         <hr/>
         <form action="sendMail.php" method="post">
@@ -65,7 +62,7 @@
                 <input name="email" type="email" class="form-control" placeholder="Email" required>
             </div>
 
-            <input type="submit" class="btn btn-primary" value="Purchase"/>
+            <button type="submit" class="btn btn-primary pull-right">Purchase</button>
         </form>
     </div>
     
