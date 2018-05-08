@@ -59,7 +59,7 @@
     mail($email,"Thanks for your purches from Grocery Store",$msg);
     //提示用户发送成功!
 
-    header("refresh:2;cart.php?method=clear");
+    header("refresh:5;cart.php?method=clear");
     //die("<h1>An email is send to $email, thanks for your purches!</h1>");
     die('<div class="container  vertical-center"><div class="alert alert-success va-11-box-shadow" role="alert"><strong>System</strong> An email is send to <strong>'.$email.'</strong>, thanks for your purches!</div></div>');
     ?>
