@@ -126,7 +126,7 @@
             
         } else {
             //die("<h1>Please add an item into the cart.</h1>");
-            die('<div class="container vertical-center"><div class="alert alert-info va-11-box-shadow" role="alert"><strong>System</strong> Please add an item into the cart.</div></div>');
+            die('<div class="container vertical-center"><div class="alert alert-info va-11-box-shadow" role="alert"><strong>System</strong> No item in the cart.</div></div>');
         }
     ?>
     
