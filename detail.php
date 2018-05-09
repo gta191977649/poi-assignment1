@@ -43,7 +43,7 @@ if ($data == null) {
            </tr>
            <tr>
                 <th>In Stock</th>
-                <td><?php echo $data["in_stock"]; ?></td>
+                <td id="stock"><?php echo $data["in_stock"]; ?></td>
            </tr>
            <tr>
                 <th>Quantity</th>
@@ -58,9 +58,9 @@ if ($data == null) {
                 <input name="item_name" type="hidden" value="<?php echo $data["product_name"]; ?>"/>
                 <input name="uni_price" type="hidden" value="<?php echo $data["unit_price"]; ?>"/>
                 <input name="unit_quantity" type="hidden" value="<?php echo $data["unit_quantity"]; ?>"/>
-                <input name="item_qty" type="number" class="form-control" id="qty" value="1" placeholder="Qty to buy">
+                <input name="item_qty" type="number" id="input_qty" class="form-control" id="qty" value="1" placeholder="Qty to buy" required>
             </div>
-            <button  type="submit" class="btn btn-primary pull-right">add to cart</button>
+            <button type="submit" class="btn btn-primary pull-right">add to cart</button>
         </form>
 
     </div>
@@ -69,6 +69,14 @@ if ($data == null) {
     <script>
         $('#item-form').submit(function (e) {
             e.preventDefault();
+            //判断是否超过库存
+            var stock = $('#stock').text();
+            var inputQty = $('#input_qty').val();
+            //alert(stock);
+            if(inputQty > stock) {
+                alert("Invaild Qty amount!");
+                return;
+            }
             $.ajax({
                 url:'cart.php',
                 type:'get',
