@@ -16,23 +16,22 @@
 </head>
 <body>
     <?php
-include "getDetail.php";
+        include "getDetail.php";
+        $id = null;
+        $data = null;
+        if (isset($_GET["id"])) {
+            $id = $_GET["id"];
 
-$id = null;
-$data = null;
-if (isset($_GET["id"])) {
-    $id = $_GET["id"];
+            $data = displayItemDetail($id);
+        } else {
+            //die("<h1>Please choose an item.</h1>");
+            die('<div class="container vertical-center "><div class="alert alert-info va-11-box-shadow" role="alert"><strong>System</strong> Please choose an item.</div></div>');
+        }
+        if ($data == null) {
+            die('<div class="container vertical-center"><div class="alert alert-danger va-11-box-shadow" role="alert"><strong>System</strong> Invaild Data ID.</div></div>');
+        }
 
-    $data = displayItemDetail($id);
-} else {
-    //die("<h1>Please choose an item.</h1>");
-    die('<div class="container vertical-center "><div class="alert alert-info va-11-box-shadow" role="alert"><strong>System</strong> Please choose an item.</div></div>');
-}
-if ($data == null) {
-    die('<div class="container vertical-center"><div class="alert alert-danger va-11-box-shadow" role="alert"><strong>System</strong> Invaild Data ID.</div></div>');
-}
-
-?>
+    ?>
     <div class="container va11-theme-border va-11-box-shadow " style="margin-top:80px; margin-bottom:80px;">
         <h1><?php echo $data["product_name"]; ?> <small>ID:<?php echo $data["product_id"]; ?></small></h1>
         <hr/>
@@ -84,12 +83,12 @@ if ($data == null) {
                 success:function(){
                     //alert("add item seccuss");
                     parent.frames['bottom_right'].location.href = "cart.php";
-                    
+
                 }
             });
         });
     </script>
-    <!-- 
+    <!--
         Ref:
             ThoughtCo. (2016). Learn to Target a Window or Frame Using JavaScript or HTML. [online] Available at: https://www.thoughtco.com/target-a-window-or-frame-using-javascript-or-html-4092194 [Accessed 5 May 2018].
 
