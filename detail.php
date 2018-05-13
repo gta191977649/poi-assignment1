@@ -59,7 +59,7 @@
                 <input name="unit_quantity" type="hidden" value="<?php echo $data["unit_quantity"]; ?>"/>
                 <input name="item_qty" type="number" id="input_qty" class="form-control" id="qty" value="1" placeholder="Qty to buy" required>
             </div>
-            <button type="submit" class="btn btn-primary pull-right">add to cart</button>
+            <button type="submit" class="btn btn-lg btn-primary pull-right">add to cart</button>
         </form>
 
     </div>
@@ -72,7 +72,7 @@
             var stock = $('#stock').text();
             var inputQty = $('#input_qty').val();
             //alert(stock);
-            if(inputQty > stock) {
+            if(parseInt(inputQty) > parseInt(stock)) {
                 alert("Invaild Qty amount!");
                 return;
             }

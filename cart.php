@@ -119,8 +119,8 @@
             displayTotal();
             ?>
             
-            <a href="contact.php" class="btn btn-success pull-right">Checkout</a>
-            <a href="cart.php?method=clear" class="btn btn-warning pull-right">Clear Cart</a>
+            <a href="contact.php" class="btn btn-lg btn-success pull-right">Checkout</a>
+            <a href="cart.php?method=clear" class="btn btn-lg btn-warning pull-right">Clear Cart</a>
             </div>
             <?php
             
