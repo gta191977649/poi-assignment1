@@ -28,6 +28,9 @@
             header("refresh:2;cart.php");
             die('<div class="container vertical-center"><div class="alert alert-warning va-11-box-shadow" role="alert"><strong>System</strong> You do not have item on cart.</div></div>');
         }
+
+        //设置用户checkout状态，预防再次添加东西到购物车
+        $_SESSION['checkout'] = true;
     ?>
     <div class="container va11-theme-border va-11-box-shadow "style="margin-top:80px; margin-bottom:80px;">
         <h1>Purchase form</h1>
@@ -62,7 +65,8 @@
                 <input name="email" type="email" class="form-control" placeholder="Email" required>
             </div>
 
-            <button type="submit" class="btn btn-primary pull-right">Purchase</button>
+            <button type="submit" class="btn btn-lg btn-primary pull-right">Purchase</button>
+            <a href="cart.php?method=clear" class="btn btn-danger" role="button">Cancel</a>
         </form>
     </div>
     

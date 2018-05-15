@@ -61,6 +61,7 @@
 
     header("refresh:5;cart.php?method=clear");
     //die("<h1>An email is send to $email, thanks for your purches!</h1>");
+    session_destroy();
     die('<div class="container  vertical-center"><div class="alert alert-success va-11-box-shadow" role="alert"><strong>System</strong> An email is send to <strong>'.$email.'</strong>, thanks for your purches!</div></div>');
     ?>
 </body>

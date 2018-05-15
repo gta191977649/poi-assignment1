@@ -1,4 +1,5 @@
 
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +17,35 @@
 </head>
 <body>
     <?php
-    session_start();
+   
+    //判断用户是否已经checkout了
+    if(isset($_SESSION['checkout'])) {
+        //header("refresh:2;url=contact.php")
+        if(isset($_GET['method'])) {
+            if($_GET['method'] == 'add' && $_SESSION['checkout'] == true) {
+                die('<div class="container vertical-center"><div class="alert alert-warning va-11-box-shadow" role="alert"><strong>System</strong> You already checkout, please process to next step.</div></div>
+                <script>
+                    setTimeout(function () {
+                        window.location.href = "contact.php";
+                    },3000);
+                    
+                </script>
+                ');
+            }
+        } else {
+            die('<div class="container vertical-center"><div class="alert alert-warning va-11-box-shadow" role="alert"><strong>System</strong> You already checkout, please process to next step.</div></div>
+                <script>
+                    setTimeout(function () {
+                        window.location.href = "contact.php";
+                    },3000);
+            </script>');
+        }
+        
+    }
+
     function addCart()
     {
-
+       
         $itemID = null;
         $itemName = null;
         $uniPrice = null;
